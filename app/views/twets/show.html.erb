@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @twet.user %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @twet.message %>
+</p>
+
+<%= link_to 'Edit', edit_twet_path(@twet) %> |
+<%= link_to 'Back', twets_path %>
