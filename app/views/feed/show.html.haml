@@ -1,0 +1,17 @@
+%p#notice= notice
+%h1 My twet feed
+%br/
+= link_to 'New Sub', new_subscription_path
+= link_to 'New Twet', new_twet_path
+= link_to 'Sign Out', sessions_path, method: :delete, data: { confirm: 'Are you sure?' }
+%table
+  %thead
+    %tr
+      %th{:colspan => "1"}
+  %tbody
+    - @feed.each do |twet|
+      %tr
+        %h3= twet.user_name.humanize
+        %p= twet.message
+        
+

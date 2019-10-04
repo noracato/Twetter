@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 	end
 
 	def authenticate_user!
-		session[:user_id] = 1 # for testing!!
-		raise "Not authenticated" unless current_user
+		# session[:user_id] = 1 # for testing!!
+		redirect_to new_sessions_path unless current_user
 	end
 
 end

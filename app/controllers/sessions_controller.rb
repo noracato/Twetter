@@ -8,11 +8,12 @@ class SessionsController < ApplicationController
 		# user zetten op basis van params
 		user = User.find_by(session_params)
 		session[:user_id] = user.id
-		redirect_to twets_path
+		redirect_to feed_path
 	end
 
 	def destroy
 		session[:user_id] = nil
+		redirect_to root_path
 	end
 
 

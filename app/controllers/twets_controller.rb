@@ -1,5 +1,6 @@
 class TwetsController < ApplicationController
   before_action :set_twet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
 
   # GET /twets
   # GET /twets.json
@@ -25,7 +26,6 @@ class TwetsController < ApplicationController
   # POST /twets.json
   def create
     @twet = Twet.new(twet_params)
-    debugger
 
     respond_to do |format|
       if @twet.save
@@ -70,7 +70,9 @@ class TwetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def twet_params
-      par_hash = params.require(:twet).permit(:user_id, :message)
+      par_hash = params.require(:twet)
+                        .permit(:message)
+                        .merge(user: current_user)
  
     end
 end
