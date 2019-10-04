@@ -1,17 +1,17 @@
 class SubscriptionsController < ApplicationController
 
-	before_action :authenticate_user!
+before_action :authenticate_user!
 
-	def index
-		@subscriptions = Subscription.where(:subscriber => current_user)
+def index
+  @subscriptions = Subscription.where(:subscriber => current_user)
 
-	end
+end
 
-	def new
-		@subscription = Subscription.new
-	end
+def new
+  @subscription = Subscription.new
+end
 
-	def create
+def create
     @subscription = Subscription.new(subscription_params)
 
     respond_to do |format|
@@ -26,10 +26,10 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-  	def subscription_params
-  		par_hash = params.require(:subscription)
-  										 .permit(:feeder_id)
-  										 .merge(subscriber: current_user)
-  	end
+  def subscription_params
+  par_hash = params.require(:subscription)
+   .permit(:feeder_id)
+   .merge(subscriber: current_user)
+  end
 
 end

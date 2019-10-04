@@ -9,12 +9,25 @@
   %body
 
     %header
-      %h1 Twetter
-      %h3.flair For a twetter world
+      .top  
+        %h1.caption Twetter
+        %h3.flair For a twetter world
 
       %nav.block
+        |||
         = link_to 'New Subscription', new_subscription_path
-        = link_to 'My Feed', feed_path      
+        |||
+        = link_to 'My Feed', feed_path
+        |||
+        = link_to 'New Twet', new_twet_path
+        |||
+        - if current_user
+          #{current_user.name} |||
+          = link_to 'Sign Out', sessions_path, method: :delete, data: { confirm: 'Are you sure?' }
+        - else
+          = link_to 'Sign up', new_user_path
+        |||
 
     %content
-      = yield
+      .content_container
+        = yield

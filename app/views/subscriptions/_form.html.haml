@@ -7,8 +7,7 @@
       %ul
         - subscription.errors.full_messages.each do |message|
           %li= message 
-  .field
-    = form.label :"Feeder ID"
-    = form.text_field :feeder_id
+  = form.select(:user, (User.all - [current_user] - [current_user.feeders]).map{|p| [p.name, p.id] } )
+    
   .actions
     = form.submit "Subscribe!"
