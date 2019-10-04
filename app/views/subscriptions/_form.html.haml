@@ -1,0 +1,14 @@
+= form_with(model: subscription, local: true) do |form|
+  - if subscription.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(subscription.errors.count, "error")
+        prohibited this subscription from being saved:
+      %ul
+        - subscription.errors.full_messages.each do |message|
+          %li= message 
+  .field
+    = form.label :"Feeder ID"
+    = form.text_field :feeder_id
+  .actions
+    = form.submit "Subscribe!"

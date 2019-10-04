@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_134032) do
+ActiveRecord::Schema.define(version: 2019_10_03_081412) do
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "subscriber_id"
+    t.integer "feeder_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feeder_id"], name: "index_subscriptions_on_feeder_id"
+    t.index ["subscriber_id"], name: "index_subscriptions_on_subscriber_id"
+  end
 
   create_table "twets", force: :cascade do |t|
     t.integer "user_id"
